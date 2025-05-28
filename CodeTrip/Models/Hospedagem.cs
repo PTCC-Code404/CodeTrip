@@ -2,6 +2,7 @@
 {
     public class Hospedagem
     {
+        public int? Id_Hospedagem { get; set; }
         public string? Nome_Hospedagem { get; set; }
         public int? Id_Tipo_Hospedagem { get; set; }
         public int? Id_Pensao { get; set; }
@@ -13,3 +14,4 @@
         public string? UF_Estado { get; set; }
     }
 }
+

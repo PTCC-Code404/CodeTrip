@@ -2,6 +2,7 @@
 {
     public class Pedido
     {
+        public int? Id_Pedido { get; set; }
         public int? Id_Usuario { get; set; }
         public string? CPF_Cli { get; set; }
         public int? Id_Transp { get; set; }

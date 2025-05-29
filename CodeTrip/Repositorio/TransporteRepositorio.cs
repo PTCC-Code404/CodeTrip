@@ -57,7 +57,7 @@ namespace CodeTrip.Repositorio
             }
         }
 
-        public IEnumerable<Transporte> TodosTransporte()
+        public IEnumerable<Transporte> TodosTransportes()
         {
             List<Transporte> TransporteLista = new List<Transporte>();
             using (var conexao = new MySqlConnection(_conexaoMySQL))

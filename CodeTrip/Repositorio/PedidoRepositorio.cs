@@ -101,13 +101,13 @@ namespace CodeTrip.Repositorio
                 dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (dr.Read())
                 {
-                    pedido.Id_Pedido = Convert.ToInt32(dr["Id_Pedido"]),
-                    pedido.Id_Usuario = Convert.ToInt32(dr["Id_Usuario"]),
-                    pedido.CPF_Cli = ((string)dr["CPF_Cli"]),
-                    pedido.Id_Transp = Convert.ToInt32(dr["Id_Transp"]),
-                    pedido.Id_End_Transporte = Convert.ToInt32(dr["Id_End_Transporte"]),
-                    pedido.Id_Hospedagem = Convert.ToInt32(dr["Id_Hospedagem"]),
-                    pedido.Id_Pagamento = Convert.ToInt32(dr["Id_Pagamento"]),
+                    pedido.Id_Pedido = Convert.ToInt32(dr["Id_Pedido"]);
+                    pedido.Id_Usuario = Convert.ToInt32(dr["Id_Usuario"]);
+                    pedido.CPF_Cli = ((string)dr["CPF_Cli"]);
+                    pedido.Id_Transp = Convert.ToInt32(dr["Id_Transp"]);
+                    pedido.Id_End_Transporte = Convert.ToInt32(dr["Id_End_Transporte"]);
+                    pedido.Id_Hospedagem = Convert.ToInt32(dr["Id_Hospedagem"]);
+                    pedido.Id_Pagamento = Convert.ToInt32(dr["Id_Pagamento"]);
                 }
                 return pedido;
             }

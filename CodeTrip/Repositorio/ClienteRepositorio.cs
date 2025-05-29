@@ -104,13 +104,13 @@ namespace CodeTrip.Repositorio
             }
         }
 
-        public Cliente ObterCliente(int id)
+        public Cliente ObterCliente(string cpf)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM Cliente WHERE CPF_Cli=@cpf", conexao);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@cpf", cpf);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
                 Cliente cliente = new Cliente();
@@ -132,7 +132,7 @@ namespace CodeTrip.Repositorio
                 return cliente;
             }
         }
-        public void Excluir(int cpf)
+        public void Excluir(string cpf)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
@@ -144,6 +144,7 @@ namespace CodeTrip.Repositorio
             }
 
         }
+
     }
 }
 

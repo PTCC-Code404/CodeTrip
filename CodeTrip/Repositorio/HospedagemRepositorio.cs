@@ -18,7 +18,7 @@ namespace CodeTrip.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Hospedagem (Nome_Hospedagem, Tipo_Hospedagem, Pensao, Logradouro_Endereço_Hospedagem, Numero_Endereço_Hospedagem, Bairro_Endereço_Hospedagem, Complemento_Endereço_Hospedagem, Cidade_Nome, UF_Estado) values(@nome, @tipo, @pensao, @logradouro, @numero, @bairro, @complemento, @cidade_nome, @uf_estado)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into Hospedagem (Nome_Hospedagem, Id_Tipo_Hospedagem, Id_Pensao, Logradouro_Endereço_Hospedagem, Numero_Endereço_Hospedagem, Bairro_Endereço_Hospedagem, Complemento_Endereço_Hospedagem, Cidade_Nome, UF_Estado) values(@nome, @tipo, @pensao, @logradouro, @numero, @bairro, @complemento, @cidade_nome, @uf_estado)", conexao);
 
                 cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = hospedagem.Nome_Hospedagem;
                 cmd.Parameters.Add("@tipo", MySqlDbType.Int32).Value = hospedagem.Id_Tipo_Hospedagem;

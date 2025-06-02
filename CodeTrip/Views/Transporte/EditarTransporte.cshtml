@@ -1,5 +1,67 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CodeTrip.Models.Transporte;
+
+<h1>Editar Transporte</h1>
+
+<h4>Transporte</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarTransporte" method="post">
+            @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
+            Um ataque CSRF ocorre quando um site malicioso, um e-mail, um programa de mensagens 
+            instantâneas ou um programa induz um navegador da web de um usuário conectado a um aplicativo da web a executar uma 
+            ação indesejada naquele aplicativo. Isso pode acontecer sem o conhecimento ou consentimento do usuário.*@
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="Id_Transp" class="form-control" />
+                <span asp-validation-for="Id_Transp" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Logradouro_End_Transporte" class="control-label"></label>
+                <input asp-for="Logradouro_End_Transporte" class="form-control" />
+                <span asp-validation-for="Logradouro_End_Transporte" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Numero_End_Transporte" class="control-label"></label>
+                <input asp-for="Numero_End_Transporte" class="form-control" />
+                <span asp-validation-for="Numero_End_Transporte" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Bairro_End_Transporte" class="control-label"></label>
+                <input asp-for="Bairro_End_Transporte" class="form-control" />
+                <span asp-validation-for="Bairro_End_Transporte" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Complemento_End_Transporte" class="control-label"></label>
+                <input asp-for="Complemento_End_Transporte" class="form-control" />
+                <span asp-validation-for="Complemento_End_Transporte" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cidade_Nome" class="control-label"></label>
+                <input asp-for="Cidade_Nome" class="form-control" />
+                <span asp-validation-for="Cidade_Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UF_Estado" class="control-label"></label>
+                <input asp-for="UF_Estado" class="form-control" />
+                <span asp-validation-for="UF_Estado" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Alterar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>

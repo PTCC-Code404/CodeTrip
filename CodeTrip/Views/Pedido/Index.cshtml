@@ -1,5 +1,61 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model IEnumerable<CodeTrip.Models.Pedido>
+
+<p>
+    <a asp-controller="Pedido" asp-action="CadastrarPedido">Cadastrar Pedido</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF_Cli)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Transp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_End_Transporte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Hospedagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id_Pagamento)
+            </th>
+
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPF_Cli)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Transp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_End_Transporte)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Hospedagem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id_Pagamento)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "EditarPedido", new { id = item.Id_Pedido }) |
+                    @Html.ActionLink("Excluir", "ExcluirPedido", new { id = item.Id_Pedido },
+                             new { onclick = "return confirm('Deseja realmente Excluir este item?');" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

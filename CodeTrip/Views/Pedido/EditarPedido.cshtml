@@ -1,5 +1,67 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model CodeTrip.Models.Pedido;
+
+<h1>Editar Pedido</h1>
+
+<h4>Pedido</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarPedido" method="post">
+            @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
+            Um ataque CSRF ocorre quando um site malicioso, um e-mail, um programa de mensagens 
+            instantâneas ou um programa induz um navegador da web de um usuário conectado a um aplicativo da web a executar uma 
+            ação indesejada naquele aplicativo. Isso pode acontecer sem o conhecimento ou consentimento do usuário.*@
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="hidden" asp-for="Id_Pedido" class="form-control" />
+                <span asp-validation-for="Id_Pedido" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id_Usuario" class="control-label"></label>
+                <input asp-for="Id_Usuario" class="form-control" />
+                <span asp-validation-for="Id_Usuario" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CPF_Cli" class="control-label"></label>
+                <input asp-for="CPF_Cli" class="form-control" />
+                <span asp-validation-for="CPF_Cli" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id_Transp" class="control-label"></label>
+                <input asp-for="Id_Transp" class="form-control" />
+                <span asp-validation-for="Id_Transp" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id_End_Transporte" class="control-label"></label>
+                <input asp-for="Id_End_Transporte" class="form-control" />
+                <span asp-validation-for="Id_End_Transporte" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id_Hospedagem" class="control-label"></label>
+                <input asp-for="Id_Hospedagem" class="form-control" />
+                <span asp-validation-for="Id_Hospedagem" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Id_Pagamento" class="control-label"></label>
+                <input asp-for="Id_Pagamento" class="form-control" />
+                <span asp-validation-for="Id_Pagamento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Alterar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>

@@ -9,6 +9,7 @@ builder.Services.AddScoped<ClienteRepositorio>();
 builder.Services.AddScoped<HospedagemRepositorio>();
 builder.Services.AddScoped<PedidoRepositorio>();
 builder.Services.AddScoped<TransporteRepositorio>();
+builder.Services.AddScoped<UsuarioRepositorio>();
 
 var app = builder.Build();
 

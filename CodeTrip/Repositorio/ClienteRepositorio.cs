@@ -145,6 +145,56 @@ namespace CodeTrip.Repositorio
 
         }
 
+        public List<Estado> Estados()
+        {
+            var lista = new List<Estado>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT UF_Estado, Nome_Estado from Estado";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Estado
+                            {
+                                UF_Estado = reader.GetString("UF_Estado"),
+                                Nome_Estado = reader.GetString("Nome_Estado")
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<Cidade> CidadesPorEstado(string UF_Estado)
+        {
+            var lista = new List<Cidade>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT Cidade_Nome FROM Cidade where UF_Estado = @UF_Estado";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    comando.Parameters.AddWithValue("@UF_Estado", UF_Estado);
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Cidade
+                            {
+                                Cidade_Nome = reader.GetString("Cidade_Nome"),
+                                UF_Estado = reader.GetString("UF_Estado")
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
     }
 }
 

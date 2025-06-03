@@ -3,6 +3,7 @@ using CodeTrip.Models;
 using CodeTrip.Repositorio;
 using MySqlX.XDevAPI;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CodeTrip.Controllers
 {
@@ -24,8 +25,25 @@ namespace CodeTrip.Controllers
 
         public IActionResult CadastrarCliente()
         {
+            var estados = _clienteRepositorio.Estados() ?? new List<Estado>();
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "Nome_Estado");
             return View();
         }
+
+        
+
+        [HttpPost]
+        public IActionResult CadastrarCliente(string UF_Estado)
+        {
+            var cidades = _clienteRepositorio.CidadesPorEstado(UF_Estado);
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "UF_Estado", UF_Estado);
+            ViewBag.HasCidades = cidades != null && cidades.Any();
+
+            var cidadesPorEstado = _clienteRepositorio.CidadesPorEstado(UF_Estado);
+            return View(cidadesPorEstado);
+            
+        }
+
 
         [HttpPost]
         public IActionResult CadastrarCliente(Cliente cliente)

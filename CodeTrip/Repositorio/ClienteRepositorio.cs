@@ -170,56 +170,29 @@ namespace CodeTrip.Repositorio
             return lista;
         }
 
-        //public List<Cidade> Cidades()
-        //{
-        //    var lista = new List<Cidade>();
-        //    using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
-        //    {
-        //        conexao.Open();
-        //        string query = "SELECT 'Cidade_Nome' from Cidade";
-        //        using (MySqlCommand comando = new MySqlCommand(query, conexao))
-        //        {
-        //            using (MySqlDataReader reader = comando.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    lista.Add(new Cidade
-        //                    {
-        //                        Cidade_Nome = reader.GetString("Cidade_Nome"),
-        //                    });
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return lista;
-        //}
-
-
-        //public List<Cidade> CidadesPorEstado(string UF_Estado)
-        //{
-        //    var lista = new List<Cidade>();
-        //    using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
-        //    {
-        //        conexao.Open();
-        //        string query = "SELECT Cidade_Nome FROM Cidade where UF_Estado = @UF_Estado";
-        //        using (MySqlCommand comando = new MySqlCommand(query, conexao))
-        //        {
-        //            comando.Parameters.AddWithValue("@UF_Estado", UF_Estado);
-        //            using (MySqlDataReader reader = comando.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    lista.Add(new Cidade
-        //                    {
-        //                        Cidade_Nome = reader.GetString("Cidade_Nome"),
-        //                        UF_Estado = reader.GetString("UF_Estado")
-        //                    });
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return lista;
-        //}
+        public List<Cidade> Cidades()
+        {
+            var lista = new List<Cidade>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "select cidade_nome from cidade;";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Cidade
+                            {
+                                Cidade_Nome = reader.GetString("Cidade_Nome"),
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
     }
 }
 

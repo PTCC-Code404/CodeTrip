@@ -4,6 +4,5 @@
     {
         public string? Cidade_Nome { get; set; }
         public string? UF_Estado { get; set; }
-
     }
 }

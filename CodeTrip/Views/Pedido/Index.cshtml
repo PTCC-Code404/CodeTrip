@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<CodeTrip.Models.Pedido>
 
 <p>
-    <a asp-controller="Pedido" asp-action="CadastrarPedido">Cadastrar Pedido</a>
+    <a asp-controller="Pedido" asp-action="CadastrarPedido" class="btn btn-outline-primary">Cadastrar Pedido</a>
+    <a asp-controller="Pedido" asp-action="EditarPedido" class="btn btn-outline-primary">Editar Pedido</a>
 </p>
 <table class="table">
     <thead>
@@ -59,3 +60,6 @@
         }
     </tbody>
 </table>
+<div class="voltar-prod">
+    <a asp-area="" asp-controller="Home" asp-action="MenuSistema" class="btn btn-outline-dark">Voltar ao Menu Principal</a>
+</div>

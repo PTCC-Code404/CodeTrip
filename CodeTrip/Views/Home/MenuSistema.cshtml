@@ -1,0 +1,52 @@
+﻿<header>
+    <link href="~/css/menusistema.css" rel="stylesheet" />
+    <img src="~/src/imagens/logo.png" alt="Logo Codetrip" class="logo" />
+    <h1>Bem-vindo ao sistema da Codetrip.</h1>
+</header>
+<html>
+
+
+<body>
+<section class="funcoes">
+    <h2>Funcionalidades</h2>
+    <div class="botoes">
+        <ul>
+            <li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index"><img class="botao_img" src="~/src/imagens/botao_cliente.png" /></a>
+				</li> 
+            <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Hospedagem" asp-action="Index"><img class="botao_img" src="~/src/imagens/botao_hospedagem.png" /></a>
+				</li> 
+            <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Transporte" asp-action="Index"><img class="botao_img" src="~/src/imagens/botao_transporte.png" /></a>
+				</li> 
+            <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Pedido" asp-action="Index"><img class="botao_img" src="~/src/imagens/botao_pedido.png" /></a>
+				</li> 
+            </ul> 
+    </div>
+</section>
+
+<section class="viagens">
+    <h2>Viagens próximas ao vencimento:</h2>
+    <div class="cartoes">
+        <div class="cartao">
+				<img src="~/src/imagens/natal.png" alt="Natal" />
+        </div>
+        <div class="cartao">
+                <img src="~/src/imagens/Rio de Janeiro.png" alt="Rio de Janeiro" />
+        </div>
+        <div class="cartao">
+                <img src="~/src/imagens/Recife.png" alt="Recife" />
+        </div>
+    </div>
+</section>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sair do Sistema</a>
+
+</body>
+</html>
+
+
+
+
+

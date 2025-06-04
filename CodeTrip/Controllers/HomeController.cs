@@ -18,6 +18,11 @@ namespace CodeTrip.Controllers
             return View();
         }
 
+        public IActionResult MenuSistema()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

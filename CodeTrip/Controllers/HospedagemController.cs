@@ -3,6 +3,7 @@ using CodeTrip.Models;
 using CodeTrip.Repositorio;
 using MySqlX.XDevAPI;
 using MySql.Data.MySqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CodeTrip.Controllers
 {
@@ -24,6 +25,10 @@ namespace CodeTrip.Controllers
 
         public IActionResult CadastrarHospedagem()
         {
+            var estados = _hospedagemRepositorio.Estados() ?? new List<Estado>();
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "Nome_Estado");
+            var cidades = _hospedagemRepositorio.Cidades() ?? new List<Cidade>();
+            ViewBag.Cidades = new SelectList(cidades, "UF_Estado", "Cidade_Nome"); 
             return View();
         }
 

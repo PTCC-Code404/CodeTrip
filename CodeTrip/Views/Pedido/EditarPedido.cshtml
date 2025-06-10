@@ -32,6 +32,18 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="Data_Inicio" class="control-label"></label>
+                <input asp-for="Data_Inicio" class="form-control" />
+                <span asp-validation-for="Data_Inicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Data_Fim" class="control-label"></label>
+                <input asp-for="Data_Fim" class="form-control" />
+                <span asp-validation-for="Data_Fim" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="Id_Transp" class="control-label"></label>
                 <input asp-for="Id_Transp" class="form-control" />
                 <span asp-validation-for="Id_Transp" class="text-danger"></span>

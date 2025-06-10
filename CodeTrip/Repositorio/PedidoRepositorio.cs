@@ -18,10 +18,12 @@ namespace CodeTrip.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Pedido (Id_Usuario, CPF_Cli, Id_Transp, Id_End_Transporte, Id_Hospedagem, Id_Pagamento) values(@Id_Usuario, @CPF_Cli, @Id_Transp, @Id_End_Transporte, @Id_Hospedagem, @Id_Pagamento)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into Pedido (Id_Usuario, CPF_Cli, Data_Inicio, Data_Fim, Id_Transp, Id_End_Transporte, Id_Hospedagem, Id_Pagamento) values(@Id_Usuario, @CPF_Cli, @Id_Transp, @Data_Inicio, @Data_Fim, @Id_End_Transporte, @Id_Hospedagem, @Id_Pagamento)", conexao);
 
                 cmd.Parameters.Add("@Id_Usuario", MySqlDbType.VarChar).Value = pedido.Id_Usuario;
                 cmd.Parameters.Add("@CPF_Cli", MySqlDbType.VarChar).Value = pedido.CPF_Cli;
+                cmd.Parameters.Add("@Data_Inicio", MySqlDbType.Date).Value = pedido.Data_Inicio;
+                cmd.Parameters.Add("@Data_Fim", MySqlDbType.Date).Value = pedido.Data_Fim;
                 cmd.Parameters.Add("@Id_Transp", MySqlDbType.VarChar).Value = pedido.Id_Transp;
                 cmd.Parameters.Add("@Id_End_Transporte", MySqlDbType.VarChar).Value = pedido.Id_End_Transporte;
                 cmd.Parameters.Add("@Id_Hospedagem", MySqlDbType.VarChar).Value = pedido.Id_Hospedagem;
@@ -38,17 +40,18 @@ namespace CodeTrip.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("Update Pedido set Id_Usuario=@Id_Usuario, CPF_Cli=@CPF_Cli, Id_Transp=@Id_Transp, Id_End_Transporte=@Id_End_Transporte, Id_Hospedagem=@Id_Hospedagem, Id_Pagamento=@Id_Pagamento" + " where Id_Pedido=@id ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("Update Pedido set Id_Usuario=@Id_Usuario, CPF_Cli=@CPF_Cli, Data_Inicio=@Data_Inicio, Data_Fim=@Data_Fim, Id_Transp=@Id_Transp, Id_End_Transporte=@Id_End_Transporte, Id_Hospedagem=@Id_Hospedagem, Id_Pagamento=@Id_Pagamento" + " where Id_Pedido=@id ", conexao);
                     cmd.Parameters.Add("@Id_Pedido", MySqlDbType.Int32).Value = pedido.Id_Pedido;
                     cmd.Parameters.Add("@Id_Usuario", MySqlDbType.Int32).Value = pedido.Id_Usuario;
                     cmd.Parameters.Add("@CPF_Cli", MySqlDbType.VarChar).Value = pedido.CPF_Cli;
+                    cmd.Parameters.Add("@Data_Inicio", MySqlDbType.Date).Value = pedido.Data_Inicio;
+                    cmd.Parameters.Add("@Data_Fim", MySqlDbType.Date).Value = pedido.Data_Fim;
                     cmd.Parameters.Add("@Id_Transp", MySqlDbType.Int32).Value = pedido.Id_Transp;
                     cmd.Parameters.Add("@Id_End_Transporte", MySqlDbType.Int32).Value = pedido.Id_End_Transporte;
                     cmd.Parameters.Add("@Id_Hospedagem", MySqlDbType.Int32).Value = pedido.Id_Hospedagem;
                     cmd.Parameters.Add("@Id_Pagamento", MySqlDbType.Int32).Value = pedido.Id_Pagamento;
                     int linhasAfetadas = cmd.ExecuteNonQuery();
                     return linhasAfetadas > 0;
-
                 }
             }
             catch (MySqlException ex)
@@ -78,10 +81,12 @@ namespace CodeTrip.Repositorio
                                     Id_Pedido = Convert.ToInt32(dr["Id_Pedido"]),
                                     Id_Usuario = Convert.ToInt32(dr["Id_Usuario"]),
                                     CPF_Cli = ((string)dr["CPF_Cli"]),
+                                    Data_Inicio = DateOnly.FromDateTime(Convert.ToDateTime(dr["Data_Inicio"])),
+                                    Data_Fim = DateOnly.FromDateTime(Convert.ToDateTime(dr["Data_Fim"])),
                                     Id_Transp = Convert.ToInt32(dr["Id_Transp"]),
                                     Id_End_Transporte = Convert.ToInt32(dr["Id_End_Transporte"]),
                                     Id_Hospedagem = Convert.ToInt32(dr["Id_Hospedagem"]),
-                                    Id_Pagamento = Convert.ToInt32(dr["Id_Pagamento"]),
+                                    Id_Pagamento = Convert.ToInt32(dr["Id_Pagamento"])
                                 });
                 }
                 return PedidoLista;
@@ -104,6 +109,8 @@ namespace CodeTrip.Repositorio
                     pedido.Id_Pedido = Convert.ToInt32(dr["Id_Pedido"]);
                     pedido.Id_Usuario = Convert.ToInt32(dr["Id_Usuario"]);
                     pedido.CPF_Cli = ((string)dr["CPF_Cli"]);
+                    pedido.Data_Inicio = DateOnly.FromDateTime(Convert.ToDateTime(dr["Data_Inicio"]));
+                    pedido.Data_Fim = DateOnly.FromDateTime(Convert.ToDateTime(dr["Data_Fim"]));
                     pedido.Id_Transp = Convert.ToInt32(dr["Id_Transp"]);
                     pedido.Id_End_Transporte = Convert.ToInt32(dr["Id_End_Transporte"]);
                     pedido.Id_Hospedagem = Convert.ToInt32(dr["Id_Hospedagem"]);

@@ -50,7 +50,7 @@ namespace CodeTrip.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarPedido(int id, [Bind("Id_Pedido, Id_Usuario, CPF_Cli, Id_Transp, Id_End_Transporte, Id_Hospedagem, Id_Pagamento")] Pedido pedido)
+        public IActionResult EditarPedido(int id, [Bind("Id_Pedido, Id_Usuario, CPF_Cli, Data_Inicio, Data_Fim, Id_Transp, Id_End_Transporte, Id_Hospedagem, Id_Pagamento")] Pedido pedido)
         {
             if (id != pedido.Id_Pedido)
             {

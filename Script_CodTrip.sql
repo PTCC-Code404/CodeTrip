@@ -112,6 +112,8 @@ CREATE TABLE Pedido (
 Id_Pedido INT AUTO_INCREMENT,
 Id_Usuario INT NOT NULL,
 CPF_Cli CHAR(11) NOT NULL,
+Data_Inicio DATE NOT NULL,
+Data_Fim DATE NOT NULL,
 Id_Transp INT NOT NULL,
 Id_End_Transporte INT NOT NULL,
 Id_Hospedagem INT NOT NULL,

@@ -15,8 +15,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <input type="hidden" asp-for="CPF_Cli" class="form-control" />
-                <span asp-validation-for="CPF_Cli" class="text-danger"></span>
+                <input type="hidden" asp-for="Id_Cli" class="form-control" />
+                <span asp-validation-for="Id_Cli" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label asp-for="Data_Nasc_Cli" class="control-label"></label>
-                <input asp-for="Data_Nasc_Cli" class="form-control" />
+                <input asp-for="Data_Nasc_Cli" type="date" class="form-control" />
                 <span asp-validation-for="Data_Nasc_Cli" class="text-danger"></span>
             </div>
 

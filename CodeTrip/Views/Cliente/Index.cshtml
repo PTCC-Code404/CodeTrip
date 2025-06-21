@@ -80,8 +80,8 @@
                     @Html.DisplayFor(modelItem => item.UF_Estado)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "EditarCliente", new { id = item.CPF_Cli }) |
-                    @Html.ActionLink("Excluir", "ExcluirCliente", new { id = item.CPF_Cli },
+                    @Html.ActionLink("Editar", "EditarCliente", new { id = item.Id_Cli }) |
+                    @Html.ActionLink("Excluir", "ExcluirCliente", new { id = item.Id_Cli },
                              new { onclick = "return confirm('Deseja realmente Excluir este item?');" })
                 </td>
             </tr>

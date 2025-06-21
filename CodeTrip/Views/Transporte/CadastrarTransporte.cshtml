@@ -11,40 +11,15 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Logradouro_End_Transporte" class="control-label"></label>
-                <input asp-for="Logradouro_End_Transporte" class="form-control" />
-                <span asp-validation-for="Logradouro_End_Transporte" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Numero_End_Transporte" class="control-label"></label>
-                <input asp-for="Numero_End_Transporte" class="form-control" />
-                <span asp-validation-for="Numero_End_Transporte" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Bairro_End_Transporte" class="control-label"></label>
-                <input asp-for="Bairro_End_Transporte" class="form-control" />
-                <span asp-validation-for="Bairro_End_Transporte" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Complemento_End_Transporte" class="control-label"></label>
-                <input asp-for="Complemento_End_Transporte" class="form-control" />
-                <span asp-validation-for="Complemento_End_Transporte" class="text-danger"></span>
+                <label asp-for="Tipo_Transp" class="control-label"></label>
+                <input asp-for="Tipo_Transp" class="form-control" />
+                <span asp-validation-for="Tipo_Transp" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label for="UF_Estado">Estado:</label>
                 <select name="UF_Estado" id="UF_Estado" class="form-control" asp-items="@ViewBag.Estados">
                     <option value="">-- Selecione um Estado --</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="Cidade_Nome">Cidade:</label>
-                <select name="Cidade_Nome" id="Cidade_Nome" class="form-control" asp-items="@ViewBag.Cidades">
-                    <option value="">-- Selecione uma cidade --</option>
                 </select>
             </div>
 

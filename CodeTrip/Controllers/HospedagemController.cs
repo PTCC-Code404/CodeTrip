@@ -26,9 +26,10 @@ namespace CodeTrip.Controllers
         public IActionResult CadastrarHospedagem()
         {
             var estados = _hospedagemRepositorio.Estados() ?? new List<Estado>();
-            ViewBag.Estados = new SelectList(estados, "UF_Estado", "Nome_Estado");
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
             var cidades = _hospedagemRepositorio.Cidades() ?? new List<Cidade>();
-            ViewBag.Cidades = new SelectList(cidades, "UF_Estado", "Cidade_Nome"); 
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
+
             return View();
         }
 
@@ -43,6 +44,11 @@ namespace CodeTrip.Controllers
 
         public IActionResult EditarHospedagem(int id)
         {
+            var estados = _hospedagemRepositorio.Estados() ?? new List<Estado>();
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
+            var cidades = _hospedagemRepositorio.Cidades() ?? new List<Cidade>();
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
+
             var hospedagem = _hospedagemRepositorio.ObterHospedagem(id);
 
             if (hospedagem == null)
@@ -55,7 +61,7 @@ namespace CodeTrip.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarHospedagem(int id, [Bind("Nome_Hospedagem, Tipo_Hospedagem, Pensao, Logradouro_Endereço_Hospedagem, Numero_Endereço_Hospedagem, Bairro_Endereço_Hospedagem, Complemento_Endereço_Hospedagem, Cidade_Nome, UF_Estado")] Hospedagem hospedagem)
+        public IActionResult EditarHospedagem(int id, [Bind("Id_Hospedagem, Nome_Hospedagem, Id_Tipo_Hospedagem, Id_Pensao, Logradouro_Endereco_Hospedagem, Numero_Endereco_Hospedagem, Bairro_Endereco_Hospedagem, Complemento_Endereco_Hospedagem, Cidade_Nome, UF_Estado")] Hospedagem hospedagem)
         {
             if (id != hospedagem.Id_Hospedagem)
             {

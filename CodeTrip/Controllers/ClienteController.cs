@@ -26,9 +26,9 @@ namespace CodeTrip.Controllers
         public IActionResult CadastrarCliente()
         {
             var estados = _clienteRepositorio.Estados() ?? new List<Estado>();
-            ViewBag.Estados = new SelectList(estados, "UF_Estado", "Nome_Estado");
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
             var cidades = _clienteRepositorio.Cidades() ?? new List<Cidade>();
-            ViewBag.Cidades = new SelectList(cidades, "UF_Estado", "Cidade_Nome");
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
 
             return View();
         }
@@ -42,9 +42,15 @@ namespace CodeTrip.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult EditarCliente(string cpf)
+        public IActionResult EditarCliente(int id)
         {
-            var cliente = _clienteRepositorio.ObterCliente(cpf);
+            var estados = _clienteRepositorio.Estados() ?? new List<Estado>();
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
+            var cidades = _clienteRepositorio.Cidades() ?? new List<Cidade>();
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
+
+
+            var cliente = _clienteRepositorio.ObterCliente(id);
 
             if (cliente == null)
             {
@@ -56,9 +62,9 @@ namespace CodeTrip.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarCliente(string cpf, [Bind("Nome_Cli, Email_Cli, Data_Nasc_Cli, CPF_Cli, Telefone_Cli, Logradouro_Cli, Numero_Cli, Bairro_Cli, Complemento_Cli, Cidade_Nome, UF_Estado")] Cliente cliente)
+        public IActionResult EditarCliente(int id, [Bind("Id_Cli, Nome_Cli, Email_Cli, Data_Nasc_Cli, CPF_Cli, Telefone_Cli, Logradouro_Cli, Numero_Cli, Bairro_Cli, Complemento_Cli, Cidade_Nome, UF_Estado")] Cliente cliente)
         {
-            if (cpf != cliente.CPF_Cli)
+            if (id != cliente.Id_Cli)
             {
                 return BadRequest();
             }
@@ -80,9 +86,9 @@ namespace CodeTrip.Controllers
             return View(cliente);
         }
 
-        public IActionResult ExcluirCliente(string cpf)
+        public IActionResult ExcluirCliente(int id)
         {
-            _clienteRepositorio.Excluir(cpf);
+            _clienteRepositorio.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
     }

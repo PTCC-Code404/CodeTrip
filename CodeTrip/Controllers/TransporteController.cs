@@ -26,9 +26,10 @@ namespace CodeTrip.Controllers
         public IActionResult CadastrarTransporte()
         {
             var estados = _transporteRepositorio.Estados() ?? new List<Estado>();
-            ViewBag.Estados = new SelectList(estados, "UF_Estado", "Nome_Estado");
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
             var cidades = _transporteRepositorio.Cidades() ?? new List<Cidade>();
-            ViewBag.Cidades = new SelectList(cidades, "UF_Estado", "Cidade_Nome");
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
+
             return View();
         }
 
@@ -43,6 +44,11 @@ namespace CodeTrip.Controllers
 
         public IActionResult EditarTransporte(int id)
         {
+            var estados = _transporteRepositorio.Estados() ?? new List<Estado>();
+            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
+            var cidades = _transporteRepositorio.Cidades() ?? new List<Cidade>();
+            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
+
             var transporte = _transporteRepositorio.ObterTransporte(id);
 
             if (transporte == null)
@@ -55,7 +61,7 @@ namespace CodeTrip.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditarTransporte(int id, [Bind("Id_Transp, Logradouro_End_Transporte, Numero_End_Transporte, Bairro_End_Transporte, Complemento_End_Transporte, Cidade_Nome, UF_Estado")] Transporte transporte)
+        public IActionResult EditarTransporte(int id, [Bind("Id_Transp, Tipo_Transp, UF_Estado")] Transporte transporte)
         {
             if (id != transporte.Id_Transp)
             {

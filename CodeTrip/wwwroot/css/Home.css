@@ -1,2 +1,29 @@
-﻿body {
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
+
+body {
+    background-color: #aecfd0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+img {
+    width: 100px;
+    margin: 30px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #05046b;
+    font-weight: bold;
+}
+

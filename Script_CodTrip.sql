@@ -21,10 +21,11 @@ PRIMARY KEY (Cidade_Nome, UF_Estado),
 FOREIGN KEY (UF_Estado) REFERENCES Estado(UF_Estado));
 
 CREATE TABLE Cliente (
+Id_Cli INT auto_increment,
 Nome_Cli VARCHAR(100),
 Email_Cli VARCHAR(255),
 Data_Nasc_Cli DATE,
-CPF_Cli CHAR(11),
+CPF_Cli CHAR(11) UNIQUE,
 Telefone_Cli VARCHAR(20),
 Logradouro_Cli VARCHAR(100),
 Numero_Cli VARCHAR(10),
@@ -32,7 +33,7 @@ Bairro_Cli VARCHAR(60),
 Complemento_Cli VARCHAR(60),
 Cidade_Nome VARCHAR(50),
 UF_Estado CHAR(2),
-PRIMARY KEY (CPF_Cli),
+PRIMARY KEY (Id_Cli),
 FOREIGN KEY (UF_Estado) REFERENCES Estado (UF_Estado),
 FOREIGN KEY (Cidade_Nome) REFERENCES Cidade (Cidade_Nome));
 

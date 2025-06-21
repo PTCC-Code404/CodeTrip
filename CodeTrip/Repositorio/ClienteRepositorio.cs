@@ -19,7 +19,7 @@ namespace CodeTrip.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Cliente (Nome_Cli, Email_Cli, Data_Nasc_Cli, CPF_Cli, Telefone_Cli, Logradouro_Cli, Numero_Cli, Bairro_Cli, Complemento_Cli, Cidade_Nome, UF_Estado\r\n) values(@nome, @email, @data_nasc, @cpf, @telefone, @logradouro, @numero, @bairro, @complemento, @cidade, @uf)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into Cliente (Nome_Cli, Email_Cli, Data_Nasc_Cli, CPF_Cli, Telefone_Cli, Logradouro_Cli, Numero_Cli, Bairro_Cli, Complemento_Cli, Cidade_Nome, UF_Estado) values(@nome, @email, @data_nasc, @cpf, @telefone, @logradouro, @numero, @bairro, @complemento, @cidade, @uf)", conexao);
 
                 cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = cliente.Nome_Cli;
                 cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = cliente.Email_Cli;
@@ -45,7 +45,8 @@ namespace CodeTrip.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("UPDATE cliente SET Nome_Cli = @nome, Email_Cli = @email, Data_Nasc_Cli = @data_nasc, CPF_Cli = @cpf, Telefone_Cli = @telefone, Logradouro_Cli = @logradouro, Numero_Cli = @numero, Bairro_Cli = @bairro, Complemento_Cli = @complemento, Cidade_Nome = @cidade, UF_Estado = @uf WHERE CPF_Cli = @cpf", conexao);
+                    MySqlCommand cmd = new MySqlCommand("UPDATE Cliente SET Nome_Cli = @nome, Email_Cli = @email, Data_Nasc_Cli = @data_nasc, CPF_Cli = @cpf, Telefone_Cli = @telefone, Logradouro_Cli = @logradouro, Numero_Cli = @numero, Bairro_Cli = @bairro, Complemento_Cli = @complemento, Cidade_Nome = @cidade, UF_Estado = @uf WHERE Id_Cli = @id", conexao);
+                    cmd.Parameters.Add("@id", MySqlDbType.VarChar).Value = cliente.Id_Cli;
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = cliente.Nome_Cli;
                     cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = cliente.Email_Cli;
                     cmd.Parameters.Add("@data_nasc", MySqlDbType.DateTime).Value = cliente.Data_Nasc_Cli;
@@ -87,9 +88,10 @@ namespace CodeTrip.Repositorio
                     ClienteLista.Add(
                                 new Cliente
                                 {
+                                    Id_Cli = Convert.ToInt32(dr["Id_Cli"]),
                                     Nome_Cli = (string)dr["Nome_Cli"],
                                     Email_Cli = (string)dr["Email_Cli"],
-                                    Data_Nasc_Cli = Convert.ToDateTime(dr["Data_Nasc_Cli"]),
+                                    Data_Nasc_Cli = DateOnly.FromDateTime(Convert.ToDateTime(dr["Data_Nasc_Cli"])),
                                     CPF_Cli = (string)dr["CPF_Cli"],
                                     Telefone_Cli = (string)dr["Telefone_Cli"],
                                     Logradouro_Cli = (string)dr["Logradouro_Cli"],
@@ -104,22 +106,23 @@ namespace CodeTrip.Repositorio
             }
         }
 
-        public Cliente ObterCliente(string cpf)
+        public Cliente ObterCliente(int id)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM Cliente WHERE CPF_Cli=@cpf", conexao);
-                cmd.Parameters.AddWithValue("@cpf", cpf);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM Cliente WHERE Id_Cli=@id", conexao);
+                cmd.Parameters.AddWithValue("@id", id);
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
                 MySqlDataReader dr;
                 Cliente cliente = new Cliente();
                 dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (dr.Read())
                 {
+                    cliente.Id_Cli = Convert.ToInt32(dr["Id_Cli"]);
                     cliente.Nome_Cli = (string)(dr["Nome_Cli"]);
                     cliente.Email_Cli = (string)(dr["Email_Cli"]);
-                    cliente.Data_Nasc_Cli = Convert.ToDateTime(dr["Data_Nasc_Cli"]);
+                    cliente.Data_Nasc_Cli = DateOnly.FromDateTime(Convert.ToDateTime(dr["Data_Nasc_Cli"]));
                     cliente.CPF_Cli = (string)(dr["CPF_Cli"]);
                     cliente.Telefone_Cli = (string)(dr["Telefone_Cli"]);
                     cliente.Logradouro_Cli = (string)(dr["Logradouro_Cli"]);
@@ -132,13 +135,13 @@ namespace CodeTrip.Repositorio
                 return cliente;
             }
         }
-        public void Excluir(string cpf)
+        public void Excluir(int id)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("DELETE FROM Cliente WHERE CPF_Cli=@cpf", conexao);
-                cmd.Parameters.AddWithValue("@cpf", cpf);
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM Cliente WHERE Id_Cli=@id", conexao);
+                cmd.Parameters.AddWithValue("@id", id);
                 int i = cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -176,7 +179,7 @@ namespace CodeTrip.Repositorio
             using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                string query = "select cidade_nome from cidade;";
+                string query = "SELECT UF_Estado, Cidade_Nome from Cidade";
                 using (MySqlCommand comando = new MySqlCommand(query, conexao))
                 {
                     using (MySqlDataReader reader = comando.ExecuteReader())
@@ -185,7 +188,8 @@ namespace CodeTrip.Repositorio
                         {
                             lista.Add(new Cidade
                             {
-                                Cidade_Nome = reader.GetString("Cidade_Nome"),
+                                UF_Estado = reader.GetString("UF_Estado"),
+                                Cidade_Nome = reader.GetString("Cidade_Nome")
                             });
                         }
                     }

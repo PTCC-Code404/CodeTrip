@@ -18,7 +18,7 @@ namespace CodeTrip.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Pedido (Id_Usuario, CPF_Cli, Data_Inicio, Data_Fim, Id_Transp, Id_End_Transporte, Id_Hospedagem, Id_Pagamento) values(@Id_Usuario, @CPF_Cli, @Id_Transp, @Data_Inicio, @Data_Fim, @Id_End_Transporte, @Id_Hospedagem, @Id_Pagamento)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into Pedido (Id_Usuario, CPF_Cli, Data_Inicio, Data_Fim, Id_Transp, Id_End_Transporte, Id_Hospedagem, Id_Pagamento) values(@Id_Usuario, @CPF_Cli, @Data_Inicio, @Data_Fim, @Id_Transp, @Id_End_Transporte, @Id_Hospedagem, @Id_Pagamento)", conexao);
 
                 cmd.Parameters.Add("@Id_Usuario", MySqlDbType.VarChar).Value = pedido.Id_Usuario;
                 cmd.Parameters.Add("@CPF_Cli", MySqlDbType.VarChar).Value = pedido.CPF_Cli;
@@ -40,7 +40,7 @@ namespace CodeTrip.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("Update Pedido set Id_Usuario=@Id_Usuario, CPF_Cli=@CPF_Cli, Data_Inicio=@Data_Inicio, Data_Fim=@Data_Fim, Id_Transp=@Id_Transp, Id_End_Transporte=@Id_End_Transporte, Id_Hospedagem=@Id_Hospedagem, Id_Pagamento=@Id_Pagamento" + " where Id_Pedido=@id ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("Update Pedido set Id_Usuario=@Id_Usuario, CPF_Cli=@CPF_Cli, Data_Inicio=@Data_Inicio, Data_Fim=@Data_Fim, Id_Transp=@Id_Transp, Id_End_Transporte=@Id_End_Transporte, Id_Hospedagem=@Id_Hospedagem, Id_Pagamento=@Id_Pagamento" + " where Id_Pedido=@Id_Pedido ", conexao);
                     cmd.Parameters.Add("@Id_Pedido", MySqlDbType.Int32).Value = pedido.Id_Pedido;
                     cmd.Parameters.Add("@Id_Usuario", MySqlDbType.Int32).Value = pedido.Id_Usuario;
                     cmd.Parameters.Add("@CPF_Cli", MySqlDbType.VarChar).Value = pedido.CPF_Cli;

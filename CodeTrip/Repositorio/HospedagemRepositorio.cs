@@ -18,15 +18,15 @@ namespace CodeTrip.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Hospedagem (Nome_Hospedagem, Id_Tipo_Hospedagem, Id_Pensao, Logradouro_Endereço_Hospedagem, Numero_Endereço_Hospedagem, Bairro_Endereço_Hospedagem, Complemento_Endereço_Hospedagem, Cidade_Nome, UF_Estado) values(@nome, @tipo, @pensao, @logradouro, @numero, @bairro, @complemento, @cidade_nome, @uf_estado)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into Hospedagem (Nome_Hospedagem, Id_Tipo_Hospedagem, Id_Pensao, Logradouro_Endereco_Hospedagem, Numero_Endereco_Hospedagem, Bairro_Endereco_Hospedagem, Complemento_Endereco_Hospedagem, Cidade_Nome, UF_Estado) values(@nome, @tipo, @pensao, @logradouro, @numero, @bairro, @complemento, @cidade_nome, @uf_estado)", conexao);
 
                 cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = hospedagem.Nome_Hospedagem;
                 cmd.Parameters.Add("@tipo", MySqlDbType.Int32).Value = hospedagem.Id_Tipo_Hospedagem;
                 cmd.Parameters.Add("@pensao", MySqlDbType.Int32).Value = hospedagem.Id_Pensao;
-                cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = hospedagem.Logradouro_Endereço_Hospedagem;
-                cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = hospedagem.Numero_Endereço_Hospedagem;
-                cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = hospedagem.Bairro_Endereço_Hospedagem;
-                cmd.Parameters.Add("@complemento", MySqlDbType.VarChar).Value = hospedagem.Complemento_Endereço_Hospedagem;
+                cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = hospedagem.Logradouro_Endereco_Hospedagem;
+                cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = hospedagem.Numero_Endereco_Hospedagem;
+                cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = hospedagem.Bairro_Endereco_Hospedagem;
+                cmd.Parameters.Add("@complemento", MySqlDbType.VarChar).Value = hospedagem.Complemento_Endereco_Hospedagem;
                 cmd.Parameters.Add("@cidade_nome", MySqlDbType.VarChar).Value = hospedagem.Cidade_Nome;
                 cmd.Parameters.Add("@uf_estado", MySqlDbType.VarChar).Value = hospedagem.UF_Estado;
                 cmd.ExecuteNonQuery();
@@ -42,15 +42,15 @@ namespace CodeTrip.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("UPDATE hospedagem SET Nome_Hospedagem = @nome, Id_Tipo_Hospedagem = @tipo, Id_Pensao = @pensao, Logradouro_Endereço_Hospedagem = @logradouro, Numero_Endereço_Hospedagem = @numero, Bairro_Endereço_Hospedagem = @bairro, Complemento_Endereço_Hospedagem = @complemento, Cidade_Nome = @cidade_nome, UF_Estado = @uf_estado" + " where Id_Hospedagem=@id ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("UPDATE Hospedagem SET Nome_Hospedagem = @nome, Id_Tipo_Hospedagem = @tipo, Id_Pensao = @pensao, Logradouro_Endereco_Hospedagem = @logradouro, Numero_Endereco_Hospedagem = @numero, Bairro_Endereco_Hospedagem = @bairro, Complemento_Endereco_Hospedagem = @complemento, Cidade_Nome = @cidade_nome, UF_Estado = @uf_estado" + " where Id_Hospedagem=@id ", conexao);
                     cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = hospedagem.Id_Hospedagem;
                     cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = hospedagem.Nome_Hospedagem;
                     cmd.Parameters.Add("@tipo", MySqlDbType.Int32).Value = hospedagem.Id_Tipo_Hospedagem;
                     cmd.Parameters.Add("@pensao", MySqlDbType.Int32).Value = hospedagem.Id_Pensao;
-                    cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = hospedagem.Logradouro_Endereço_Hospedagem;
-                    cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = hospedagem.Numero_Endereço_Hospedagem;
-                    cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = hospedagem.Bairro_Endereço_Hospedagem;
-                    cmd.Parameters.Add("@complemento", MySqlDbType.VarChar).Value = hospedagem.Complemento_Endereço_Hospedagem;
+                    cmd.Parameters.Add("@logradouro", MySqlDbType.VarChar).Value = hospedagem.Logradouro_Endereco_Hospedagem;
+                    cmd.Parameters.Add("@numero", MySqlDbType.VarChar).Value = hospedagem.Numero_Endereco_Hospedagem;
+                    cmd.Parameters.Add("@bairro", MySqlDbType.VarChar).Value = hospedagem.Bairro_Endereco_Hospedagem;
+                    cmd.Parameters.Add("@complemento", MySqlDbType.VarChar).Value = hospedagem.Complemento_Endereco_Hospedagem;
                     cmd.Parameters.Add("@cidade_nome", MySqlDbType.VarChar).Value = hospedagem.Cidade_Nome;
                     cmd.Parameters.Add("@uf_estado", MySqlDbType.VarChar).Value = hospedagem.UF_Estado;
                     int linhasAfetadas = cmd.ExecuteNonQuery();
@@ -86,10 +86,10 @@ namespace CodeTrip.Repositorio
                                     Nome_Hospedagem = (string)dr["Nome_Hospedagem"],
                                     Id_Tipo_Hospedagem = Convert.ToInt32(dr["Id_Tipo_Hospedagem"]),
                                     Id_Pensao = Convert.ToInt32(dr["Id_Pensao"]),
-                                    Logradouro_Endereço_Hospedagem = (string)dr["Logradouro_Endereço_Hospedagem"],
-                                    Numero_Endereço_Hospedagem = (string)dr["Numero_Endereço_Hospedagem"],
-                                    Bairro_Endereço_Hospedagem = (string)dr["Bairro_Endereço_Hospedagem"],
-                                    Complemento_Endereço_Hospedagem = (string)dr["Complemento_Endereço_Hospedagem"],
+                                    Logradouro_Endereco_Hospedagem = (string)dr["Logradouro_Endereco_Hospedagem"],
+                                    Numero_Endereco_Hospedagem = (string)dr["Numero_Endereco_Hospedagem"],
+                                    Bairro_Endereco_Hospedagem = (string)dr["Bairro_Endereco_Hospedagem"],
+                                    Complemento_Endereco_Hospedagem = (string)dr["Complemento_Endereco_Hospedagem"],
                                     Cidade_Nome = (string)dr["Cidade_Nome"],
                                     UF_Estado = (string)dr["UF_Estado"]
                                 });
@@ -115,10 +115,10 @@ namespace CodeTrip.Repositorio
                     hospedagem.Nome_Hospedagem = (string)(dr["Nome_Hospedagem"]);
                     hospedagem.Id_Tipo_Hospedagem = Convert.ToInt32(dr["Id_Tipo_Hospedagem"]);
                     hospedagem.Id_Pensao = Convert.ToInt32(dr["Id_Pensao"]);
-                    hospedagem.Logradouro_Endereço_Hospedagem = (string)(dr["Logradouro_Endereço_Hospedagem"]);
-                    hospedagem.Numero_Endereço_Hospedagem = (string)(dr["Numero_Endereço_Hospedagem"]);
-                    hospedagem.Bairro_Endereço_Hospedagem = (string)(dr["Bairro_Endereço_Hospedagem"]);
-                    hospedagem.Complemento_Endereço_Hospedagem = (string)(dr["Complemento_Endereço_Hospedagem"]);
+                    hospedagem.Logradouro_Endereco_Hospedagem = (string)(dr["Logradouro_Endereco_Hospedagem"]);
+                    hospedagem.Numero_Endereco_Hospedagem = (string)(dr["Numero_Endereco_Hospedagem"]);
+                    hospedagem.Bairro_Endereco_Hospedagem = (string)(dr["Bairro_Endereco_Hospedagem"]);
+                    hospedagem.Complemento_Endereco_Hospedagem = (string)(dr["Complemento_Endereco_Hospedagem"]);
                     hospedagem.Cidade_Nome = (string)(dr["Cidade_Nome"]);
                     hospedagem.UF_Estado = (string)(dr["UF_Estado"]);
                 }
@@ -169,7 +169,7 @@ namespace CodeTrip.Repositorio
             using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                string query = "select cidade_nome from cidade;";
+                string query = "SELECT UF_Estado, Cidade_Nome from Cidade";
                 using (MySqlCommand comando = new MySqlCommand(query, conexao))
                 {
                     using (MySqlDataReader reader = comando.ExecuteReader())
@@ -178,7 +178,8 @@ namespace CodeTrip.Repositorio
                         {
                             lista.Add(new Cidade
                             {
-                                Cidade_Nome = reader.GetString("Cidade_Nome"),
+                                UF_Estado = reader.GetString("UF_Estado"),
+                                Cidade_Nome = reader.GetString("Cidade_Nome")
                             });
                         }
                     }

@@ -17,13 +17,9 @@ namespace CodeTrip.Repositorio
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("insert into Transporte (Logradouro_End_Transporte, Numero_End_Transporte, Bairro_End_Transporte, Complemento_End_Transporte, Cidade_Nome, UF_Estado) values(@Logradouro_End, @Numero_End, @Bairro_End, @Complemento_End, @Cidade_Nome, @UF_Estado)", conexao);
+                MySqlCommand cmd = new MySqlCommand("insert into Transporte (Tipo_Transp, UF_Estado) values(@tipo_transp, @uf_estado)", conexao);
 
-                cmd.Parameters.Add("@logradouro_end", MySqlDbType.VarChar).Value = transporte.Logradouro_End_Transporte;
-                cmd.Parameters.Add("@numero_end", MySqlDbType.VarChar).Value = transporte.Numero_End_Transporte;
-                cmd.Parameters.Add("@bairro_end", MySqlDbType.VarChar).Value = transporte.Bairro_End_Transporte;
-                cmd.Parameters.Add("@complemento_end", MySqlDbType.VarChar).Value = transporte.Complemento_End_Transporte;
-                cmd.Parameters.Add("@cidade_nome", MySqlDbType.VarChar).Value = transporte.Cidade_Nome;
+                cmd.Parameters.Add("@tipo_transp", MySqlDbType.VarChar).Value = transporte.Tipo_Transp;
                 cmd.Parameters.Add("@uf_estado", MySqlDbType.VarChar).Value = transporte.UF_Estado;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -37,13 +33,9 @@ namespace CodeTrip.Repositorio
                 using (var conexao = new MySqlConnection(_conexaoMySQL))
                 {
                     conexao.Open();
-                    MySqlCommand cmd = new MySqlCommand("Update Transporte set Id_Transp=@id, Logradouro_End_Transporte=@logradouro_end, Numero_End_Transporte=@numero_end, Bairro_End_Transporte=@bairro_end, Complemento_End_Transporte=@complemento_end, Cidade_Nome=@cidade_nome, UF_Estado=@uf_estado" + " where Id_Transp=@id ", conexao);
+                    MySqlCommand cmd = new MySqlCommand("Update Transporte set Tipo_Transp=@tipo_transp, UF_Estado=@uf_estado" + " where Id_Transp=@id ", conexao);
                     cmd.Parameters.Add("@id", MySqlDbType.VarChar).Value = transporte.Id_Transp;
-                    cmd.Parameters.Add("@logradouro_end", MySqlDbType.VarChar).Value = transporte.Logradouro_End_Transporte;
-                    cmd.Parameters.Add("@numero_end", MySqlDbType.VarChar).Value = transporte.Numero_End_Transporte;
-                    cmd.Parameters.Add("@bairro_end", MySqlDbType.VarChar).Value = transporte.Bairro_End_Transporte;
-                    cmd.Parameters.Add("@complemento_end", MySqlDbType.VarChar).Value = transporte.Complemento_End_Transporte;
-                    cmd.Parameters.Add("@cidade_nome", MySqlDbType.VarChar).Value = transporte.Cidade_Nome;
+                    cmd.Parameters.Add("@tipo_transp", MySqlDbType.VarChar).Value = transporte.Tipo_Transp;
                     cmd.Parameters.Add("@uf_estado", MySqlDbType.VarChar).Value = transporte.UF_Estado;
                     int linhasAfetadas = cmd.ExecuteNonQuery();
                     return linhasAfetadas > 0;
@@ -75,12 +67,8 @@ namespace CodeTrip.Repositorio
                                 new Transporte
                                 {
                                     Id_Transp = Convert.ToInt32(dr["Id_Transp"]),
-                                    Logradouro_End_Transporte = ((string)dr["Logradouro_End_Transporte"]),
-                                    Numero_End_Transporte = ((string)dr["Numero_End_Transporte"]),
-                                    Bairro_End_Transporte = ((string)dr["Bairro_End_Transporte"]),
-                                    Complemento_End_Transporte = ((string)dr["Complemento_End_Transporte"]),
-                                    Cidade_Nome = ((string)dr["Cidade_Nome"]),
-                                    UF_Estado = ((string)dr["UF_Estado"]),
+                                    Tipo_Transp = (string)dr["Tipo_Transp"],
+                                    UF_Estado = (string)dr["UF_Estado"]
                                 });
                 }
                 return TransporteLista;
@@ -101,11 +89,7 @@ namespace CodeTrip.Repositorio
                 while (dr.Read())
                 {
                     transporte.Id_Transp = Convert.ToInt32(dr["Id_Transp"]);
-                    transporte.Logradouro_End_Transporte = ((string)dr["Logradouro_End_Transporte"]);
-                    transporte.Numero_End_Transporte = ((string)dr["Numero_End_Transporte"]);
-                    transporte.Bairro_End_Transporte = ((string)dr["Bairro_End_Transporte"]);
-                    transporte.Complemento_End_Transporte = ((string)dr["Complemento_End_Transporte"]);
-                    transporte.Cidade_Nome = ((string)dr["Cidade_Nome"]);
+                    transporte.Tipo_Transp = ((string)dr["Tipo_Transp"]);
                     transporte.UF_Estado = ((string)dr["UF_Estado"]);
                 }
                 return transporte;
@@ -155,7 +139,7 @@ namespace CodeTrip.Repositorio
             using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                string query = "select cidade_nome from cidade;";
+                string query = "SELECT UF_Estado, Cidade_Nome from Cidade";
                 using (MySqlCommand comando = new MySqlCommand(query, conexao))
                 {
                     using (MySqlDataReader reader = comando.ExecuteReader())
@@ -164,7 +148,8 @@ namespace CodeTrip.Repositorio
                         {
                             lista.Add(new Cidade
                             {
-                                Cidade_Nome = reader.GetString("Cidade_Nome"),
+                                UF_Estado = reader.GetString("UF_Estado"),
+                                Cidade_Nome = reader.GetString("Cidade_Nome")
                             });
                         }
                     }

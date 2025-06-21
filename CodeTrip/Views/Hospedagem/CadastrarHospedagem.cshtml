@@ -29,40 +29,41 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Logradouro_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Logradouro_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Logradouro_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Logradouro_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Logradouro_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Logradouro_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Numero_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Numero_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Numero_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Numero_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Numero_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Numero_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Bairro_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Bairro_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Bairro_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Bairro_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Bairro_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Bairro_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Complemento_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Complemento_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Complemento_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Complemento_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Complemento_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Complemento_Endereco_Hospedagem" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Cidade_Nome">Cidade:</label>
+
+                <select name="Cidade_Nome" id="Cidade_Nome" class="form-control" asp-items="@ViewBag.Cidades">
+                    <option value="">-- Selecione uma cidade --</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="UF_Estado">Estado:</label>
                 <select name="UF_Estado" id="UF_Estado" class="form-control" asp-items="@ViewBag.Estados">
                     <option value="">-- Selecione um Estado --</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="Cidade_Nome">Cidade:</label>
-                <select name="Cidade_Nome" id="Cidade_Nome" class="form-control" asp-items="@ViewBag.Cidades">
-                    <option value="">-- Selecione uma cidade --</option>
                 </select>
             </div>
 

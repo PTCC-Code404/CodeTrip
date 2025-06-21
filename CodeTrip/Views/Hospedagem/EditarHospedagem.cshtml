@@ -7,10 +7,10 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="EditarHospedagem" method="post">
-            @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
+            @*Esse token desempenha um papel crucial na prevencão de ataques de Cross-Site Request Forgery (CSRF).
             Um ataque CSRF ocorre quando um site malicioso, um e-mail, um programa de mensagens 
             instantâneas ou um programa induz um navegador da web de um usuário conectado a um aplicativo da web a executar uma 
-            ação indesejada naquele aplicativo. Isso pode acontecer sem o conhecimento ou consentimento do usuário.*@
+            acão indesejada naquele aplicativo. Isso pode acontecer sem o conhecimento ou consentimento do usuário.*@
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -38,27 +38,27 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Logradouro_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Logradouro_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Logradouro_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Logradouro_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Logradouro_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Logradouro_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Numero_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Numero_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Numero_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Numero_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Numero_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Numero_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Bairro_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Bairro_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Bairro_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Bairro_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Bairro_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Bairro_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Complemento_Endereço_Hospedagem" class="control-label"></label>
-                <input asp-for="Complemento_Endereço_Hospedagem" class="form-control" />
-                <span asp-validation-for="Complemento_Endereço_Hospedagem" class="text-danger"></span>
+                <label asp-for="Complemento_Endereco_Hospedagem" class="control-label"></label>
+                <input asp-for="Complemento_Endereco_Hospedagem" class="form-control" />
+                <span asp-validation-for="Complemento_Endereco_Hospedagem" class="text-danger"></span>
             </div>
 
             <div class="form-group">

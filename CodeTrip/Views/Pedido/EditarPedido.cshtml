@@ -1,10 +1,15 @@
 ﻿@model CodeTrip.Models.Pedido;
 
-<h1>Editar Pedido</h1>
+<header>
+    <link href="~/css/crud.css" rel="stylesheet" />
+</header>
 
-<h4>Pedido</h4>
-<hr />
-<div class="row">
+
+<div class="formulario">
+    <div class="menu">
+        <img src="~/src/imagens/logo_nome.jpg" alt="Logo Codetrip" class="logo" />
+        <h1>Editar Pedido</h1>
+    </div>
     <div class="col-md-4">
         <form asp-action="EditarPedido" method="post">
             @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
@@ -67,18 +72,11 @@
                 <span asp-validation-for="Id_Pagamento" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
+            <div class="botoes">
                 <input type="submit" value="Alterar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-dark">Voltar para Pedido</a>
+                <a asp-area="" asp-controller="Home" asp-action="MenuSistema" class="btn btn-outline-dark">Voltar ao Menu Principal</a>
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <div class="voltar-prod">
-        <a asp-action="Index" class="btn btn-outline-dark">Voltar para Pedido</a>
-    </div>
-    <div class="voltar-prod">
-        <a asp-area="" asp-controller="Home" asp-action="MenuSistema" class="btn btn-outline-dark">Voltar ao Menu Principal</a>
     </div>
 </div>

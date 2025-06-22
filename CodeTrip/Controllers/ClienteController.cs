@@ -26,9 +26,22 @@ namespace CodeTrip.Controllers
         public IActionResult CadastrarCliente()
         {
             var estados = _clienteRepositorio.Estados() ?? new List<Estado>();
-            ViewBag.Estados = new SelectList(estados, "UF_Estado", "UF_Estado");
+            ViewBag.Estados = estados
+                .Select(e => new SelectListItem
+                {
+                    Value = e.UF_Estado,
+                    Text = $"{e.UF_Estado} - {e.Nome_Estado}"
+                })
+                .ToList();
+
             var cidades = _clienteRepositorio.Cidades() ?? new List<Cidade>();
-            ViewBag.Cidades = new SelectList(cidades, "Cidade_Nome", "Cidade_Nome");
+            ViewBag.Cidades = cidades
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.Cidade_Nome,
+                        Text = $"{c.Cidade_Nome} / {c.UF_Estado}" 
+                    })
+                .ToList();
 
             return View();
         }

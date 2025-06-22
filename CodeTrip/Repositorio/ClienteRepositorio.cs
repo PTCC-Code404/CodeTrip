@@ -135,6 +135,7 @@ namespace CodeTrip.Repositorio
                 return cliente;
             }
         }
+
         public void Excluir(int id)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))

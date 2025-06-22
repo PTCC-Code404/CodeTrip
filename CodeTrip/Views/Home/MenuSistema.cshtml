@@ -1,12 +1,17 @@
 ﻿<header>
     <link href="~/css/menusistema.css" rel="stylesheet" />
+</header>
+
+<html>
+<div class="menu_superior"><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sair do Sistema</a></div>
+<div class="menu_titulos">
     <img src="~/src/imagens/logo.png" alt="Logo Codetrip" class="logo" />
     <h1>Bem-vindo ao sistema da Codetrip.</h1>
-</header>
-<html>
+</div>
 
 
 <body>
+    <main class="total">
     <section class="funcoes">
         <h2>Funcionalidades</h2>
         <div class="botoes">
@@ -28,7 +33,7 @@
     </section>
 
     <section class="viagens">
-        <h2>Viagens próximas ao vencimento:</h2>
+        <h3>Viagens próximas ao vencimento:</h3>
         <div class="cartoes">
             <div class="cartao">
                 <img src="~/src/imagens/natal.png" alt="Natal" />
@@ -41,8 +46,8 @@
             </div>
         </div>
     </section>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sair do Sistema</a>
-
+    
+    </main>
 </body>
 </html>
 

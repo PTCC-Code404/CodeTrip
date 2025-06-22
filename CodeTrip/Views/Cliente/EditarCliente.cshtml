@@ -1,10 +1,16 @@
 ﻿@model CodeTrip.Models.Cliente;
 
-<h1>Editar Cliente</h1>
+<header>
+    <link href="~/css/crud.css" rel="stylesheet" />
+</header>
 
-<h4>Cliente</h4>
-<hr />
-<div class="row">
+
+<div class="formulario">
+    <div class="menu">
+        <img src="~/src/imagens/logo_nome.jpg" alt="Logo Codetrip" class="logo" />
+        <h1>Editar Cliente</h1>
+    </div>
+    
     <div class="col-md-4">
         <form asp-action="EditarCliente" method="post">
             @*Esse token desempenha um papel crucial na prevenção de ataques de Cross-Site Request Forgery (CSRF).
@@ -84,19 +90,11 @@
                 <input asp-for="UF_Estado" class="form-control" />
                 <span asp-validation-for="UF_Estado" class="text-danger"></span>
             </div>
-
-            <div class="form-group">
+            <div class="botoes">
                 <input type="submit" value="Alterar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-dark">Voltar para Cliente</a>
+                <a asp-area="" asp-controller="Home" asp-action="MenuSistema" class="btn btn-outline-dark">Voltar ao Menu Principal</a>
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <div class="voltar-prod">
-        <a asp-action="Index" class="btn btn-outline-dark">Voltar para Cliente</a>
-    </div>
-    <div class="voltar-prod">
-        <a asp-area="" asp-controller="Home" asp-action="MenuSistema" class="btn btn-outline-dark">Voltar ao Menu Principal</a>
     </div>
 </div>

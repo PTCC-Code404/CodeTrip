@@ -36,15 +36,6 @@ html, body {
     margin-bottom: 10px;
     }
 
-h1 {
-    margin-bottom: 10px;
-    font-size: 20px;
-    color: #000556;
-    font-weight: 700;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    letter-spacing: 1.5px;
-}
-
 form {
     display: flex;
     flex-direction: column;

@@ -131,5 +131,160 @@ namespace CodeTrip.Repositorio
                 conexao.Close();
             }
         }
+
+        public List<Usuario> Usuarios()
+        {
+            var lista = new List<Usuario>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT id_Usuario, nome_Usuario from Usuario";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Usuario
+                            {
+                                Id_Usuario = reader.GetInt32("Id_Usuario"),
+                                Nome_Usuario = reader.GetString("Nome_Usuario")
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<Cliente> Clientes()
+        {
+            var lista = new List<Cliente>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT Nome_Cli, CPF_Cli from Cliente";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Cliente
+                            {
+                                Nome_Cli = reader.GetString("Nome_Cli"),
+                                CPF_Cli = reader.GetString("CPF_Cli")
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<Transporte> Transportes()
+        {
+            var lista = new List<Transporte>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT Id_Transp, Tipo_Transp, UF_Estado from Transporte";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Transporte
+                            {
+                                Id_Transp = reader.GetInt32("Id_Transp"),
+                                Tipo_Transp = reader.GetString("Tipo_Transp"),
+                                UF_Estado = reader.GetString("UF_Estado")
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<End_Transporte> End_Transportes()
+        {
+            var lista = new List<End_Transporte>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT Id_End_Transporte, Logradouro_End_Transporte, Numero_End_Transporte, Cidade_Nome, UF_Estado from End_Transporte";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new End_Transporte
+                            {
+                                Id_End_Transporte = reader.GetInt32("Id_End_Transporte"),
+                                Logradouro_End_Transporte = reader.GetString("Logradouro_End_Transporte"),
+                                Numero_End_Transporte = reader.GetString("Numero_End_Transporte"),
+                                Cidade_Nome = reader.GetString("Cidade_Nome"),
+                                UF_Estado = reader.GetString("UF_Estado")
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<Hospedagem> Hospedagens()
+        {
+            var lista = new List<Hospedagem>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT Id_Hospedagem, Nome_Hospedagem from Hospedagem";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Hospedagem
+                            {
+                                Id_Hospedagem = reader.GetInt32("Id_Hospedagem"),
+                                Nome_Hospedagem = reader.GetString("Nome_Hospedagem"),
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public List<Pagamento> Pagamentos()
+        {
+            var lista = new List<Pagamento>();
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                string query = "SELECT Id_Pagamento, Desc_Pagamento from Pagamento";
+                using (MySqlCommand comando = new MySqlCommand(query, conexao))
+                {
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            lista.Add(new Pagamento
+                            {
+                                Id_Pagamento = reader.GetInt32("Id_Pagamento"),
+                                Desc_Pagamento = reader.GetString("Desc_Pagamento"),
+                            });
+                        }
+                    }
+                }
+            }
+            return lista;
+        }
+
     }
 }
